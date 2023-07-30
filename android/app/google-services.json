@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "425897403573",
+    "project_id": "fir-distribution-d5be6",
+    "storage_bucket": "fir-distribution-d5be6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425897403573:android:84b2407d5c7f6660a4cafc",
+        "android_client_info": {
+          "package_name": "com.firebasedistribution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425897403573-rmj0rjfts5duupmqerauua1rldul2vte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOh9yZ-hAdTbcvleUDLMIPrbb8L-JeXTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425897403573-rmj0rjfts5duupmqerauua1rldul2vte.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "425897403573-t40v4kmtc6b6tm0gnua6r6j4ireimm32.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nus.firebase-distribution"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

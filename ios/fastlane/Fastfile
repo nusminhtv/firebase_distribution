@@ -1,0 +1,48 @@
+desc "Building your App in beta version"
+lane :beta do |options|
+    build(profile: options[:env])
+    firebase_app_distribution(
+      app: ENV['APP_ID'],
+      groups: ENV["GROUPS"] || options[:groups],
+      release_notes: options[:notes] ||  ENV['RELEASE_NOTE'],
+    )
+  
+ 
+end
+private_lane :build do |options|
+    puts "+------------------------------------+".bold.blue
+    puts "|-- Environment: #{options[:profile]} 🚀 --|".bold.blue
+    puts "+------------------------------------+".bold.blue 
+    #get_certificates           # invokes cert
+    #get_provisioning_profile   # invokes sigh
+    app_store_connect_api_key(
+      key_id: ENV['APPLE_KEY_ID'],
+      issuer_id: ENV['APPLE_KEY_ISSUER_ID'],
+      key_filepath: ENV['APPLE_KEY_FILE_PATH']
+    )
+    get_provisioning_profile(
+      app_identifier:  ENV['BUNDLE_ID'],
+      adhoc: true,
+      force: true,
+      filename: "comnusfirebasedistribution_Adhoc.mobileprovision"
+    )
+    increment_build_number()
+
+    scheme = ENV['SCHEME_NAME']
+    method = (options[:profile] == 'distribution' ? "app-store" : "ad-hoc")
+    profile = (options[:profile] == 'distribution' ? 
+      ENV['DISTRIBUTION_PROFILE_APPSTORE'] : ENV['DISTRIBUTION_PROFILE_FIREBASE'])
+    build_app(
+      scheme: scheme,
+      workspace: "FirebaseDistribution.xcworkspace",
+      export_options: {
+        method: method,
+        provisioningProfiles: {
+          ENV['BUNDLE_ID'] => profile
+        },
+        compileBitcode: false
+      },
+      include_bitcode: true,
+      clean: true
+    )
+end
