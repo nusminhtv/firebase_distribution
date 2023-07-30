@@ -13,8 +13,6 @@ private_lane :build do |options|
     puts "+------------------------------------+".bold.blue
     puts "|-- Environment: #{options[:profile]} 🚀 --|".bold.blue
     puts "+------------------------------------+".bold.blue 
-    #get_certificates           # invokes cert
-    #get_provisioning_profile   # invokes sigh
     app_store_connect_api_key(
       key_id: ENV['APPLE_KEY_ID'],
       issuer_id: ENV['APPLE_KEY_ISSUER_ID'],
@@ -24,7 +22,7 @@ private_lane :build do |options|
       app_identifier:  ENV['BUNDLE_ID'],
       adhoc: true,
       force: true,
-      filename: "comnusfirebasedistribution_Adhoc.mobileprovision"
+      filename: ENV['DISTRIBUTION_PROFILE_FIREBASE']
     )
     increment_build_number()
 
